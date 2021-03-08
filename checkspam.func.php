@@ -64,6 +64,8 @@ function checkSpam($email,$phone,$comments,$dealer="", $notifyAddress="",$mode="
 		/**  End email reputation code  **/
 		//not all forms require phone numbers (e.g. tellfriend), so skip this part if there is no $phone
 		if($phone >''){
+			// Because most of our clients are brick-and-morter storefronts who don't do international business, 
+			// this will flag any phone number that doesn't look like a valid U.S./Can/Mex phone number.
 			// Test for more then 5 repeated digits in the phone number
 			$phoneRegex = "(\d)(\1){4,}";
 			if(preg_match("/$phoneRegex/",preg_replace("/^D/","",$phone))){
